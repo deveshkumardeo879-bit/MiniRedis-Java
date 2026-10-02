@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Redis Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>Mini Redis</h1>
+    <p class="subtitle">Your own Redis implementation in Java</p>
+
+    <div class="card">
+
+        <h2>SET Key</h2>
+
+        <input
+                type="text"
+                id="setKey"
+                placeholder="Key"
+        >
+
+        <input
+                type="text"
+                id="setValue"
+                placeholder="Value"
+        >
+
+        <button onclick="setValue()">SET</button>
+
+    </div>
+
+    <div class="card">
+
+        <h2>GET Key</h2>
+
+        <input
+                type="text"
+                id="getKey"
+                placeholder="Key"
+        >
+
+        <button onclick="getValue()">GET</button>
+
+        <div id="getResult" class="result"></div>
+
+    </div>
+
+    <div class="card">
+
+        <h2>SET Key with TTL</h2>
+
+        <input
+                type="text"
+                id="ttlKey"
+                placeholder="Key"
+        >
+
+        <input
+                type="text"
+                id="ttlValue"
+                placeholder="Value"
+        >
+
+        <input
+                type="number"
+                id="ttlSeconds"
+                placeholder="Seconds"
+        >
+
+        <button onclick="setTTL()">SETEX</button>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Delete Key</h2>
+
+        <input
+                type="text"
+                id="deleteKey"
+                placeholder="Key"
+        >
+
+        <button onclick="deleteValue()">DELETE</button>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Check Key</h2>
+
+        <input
+                type="text"
+                id="existsKey"
+                placeholder="Key"
+        >
+
+        <button onclick="checkExists()">EXISTS</button>
+
+        <div id="existsResult" class="result"></div>
+
+    </div>
+
+    <div id="message" class="message"></div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
