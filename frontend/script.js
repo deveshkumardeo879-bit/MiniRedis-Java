@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:8080/api";
+const API_URL = "https://miniredis-java-production.up.railway.app/api";
 
 
 async function setValue() {
@@ -6,16 +6,25 @@ async function setValue() {
     const key = document.getElementById("setKey").value;
     const value = document.getElementById("setValue").value;
 
-    const response = await fetch(
-        `${API_URL}/set?key=${encodeURIComponent(key)}&value=${encodeURIComponent(value)}`,
-        {
-            method: "POST"
-        }
-    );
+    try {
 
-    const result = await response.text();
+        const response = await fetch(
+            `${API_URL}/set?key=${encodeURIComponent(key)}&value=${encodeURIComponent(value)}`,
+            {
+                method: "POST"
+            }
+        );
 
-    showMessage("SET: " + result);
+        const result = await response.text();
+
+        showMessage("SET: " + result);
+
+    } catch (error) {
+
+        showMessage("SET failed: Backend connection error");
+
+        console.error(error);
+    }
 }
 
 
@@ -23,14 +32,24 @@ async function getValue() {
 
     const key = document.getElementById("getKey").value;
 
-    const response = await fetch(
-        `${API_URL}/get?key=${encodeURIComponent(key)}`
-    );
+    try {
 
-    const result = await response.text();
+        const response = await fetch(
+            `${API_URL}/get?key=${encodeURIComponent(key)}`
+        );
 
-    document.getElementById("getResult").innerText =
-        "Result: " + result;
+        const result = await response.text();
+
+        document.getElementById("getResult").innerText =
+            "Result: " + result;
+
+    } catch (error) {
+
+        document.getElementById("getResult").innerText =
+            "Result: Backend connection error";
+
+        console.error(error);
+    }
 }
 
 
@@ -40,16 +59,25 @@ async function setTTL() {
     const value = document.getElementById("ttlValue").value;
     const seconds = document.getElementById("ttlSeconds").value;
 
-    const response = await fetch(
-        `${API_URL}/setex?key=${encodeURIComponent(key)}&seconds=${encodeURIComponent(seconds)}&value=${encodeURIComponent(value)}`,
-        {
-            method: "POST"
-        }
-    );
+    try {
 
-    const result = await response.text();
+        const response = await fetch(
+            `${API_URL}/setex?key=${encodeURIComponent(key)}&seconds=${encodeURIComponent(seconds)}&value=${encodeURIComponent(value)}`,
+            {
+                method: "POST"
+            }
+        );
 
-    showMessage("SETEX: " + result);
+        const result = await response.text();
+
+        showMessage("SETEX: " + result);
+
+    } catch (error) {
+
+        showMessage("SETEX failed: Backend connection error");
+
+        console.error(error);
+    }
 }
 
 
@@ -57,16 +85,25 @@ async function deleteValue() {
 
     const key = document.getElementById("deleteKey").value;
 
-    const response = await fetch(
-        `${API_URL}/delete?key=${encodeURIComponent(key)}`,
-        {
-            method: "DELETE"
-        }
-    );
+    try {
 
-    const result = await response.text();
+        const response = await fetch(
+            `${API_URL}/delete?key=${encodeURIComponent(key)}`,
+            {
+                method: "DELETE"
+            }
+        );
 
-    showMessage("DELETE: " + result);
+        const result = await response.text();
+
+        showMessage("DELETE: " + result);
+
+    } catch (error) {
+
+        showMessage("DELETE failed: Backend connection error");
+
+        console.error(error);
+    }
 }
 
 
@@ -74,14 +111,24 @@ async function checkExists() {
 
     const key = document.getElementById("existsKey").value;
 
-    const response = await fetch(
-        `${API_URL}/exists?key=${encodeURIComponent(key)}`
-    );
+    try {
 
-    const result = await response.text();
+        const response = await fetch(
+            `${API_URL}/exists?key=${encodeURIComponent(key)}`
+        );
 
-    document.getElementById("existsResult").innerText =
-        "Exists: " + result;
+        const result = await response.text();
+
+        document.getElementById("existsResult").innerText =
+            "Exists: " + result;
+
+    } catch (error) {
+
+        document.getElementById("existsResult").innerText =
+            "Exists: Backend connection error";
+
+        console.error(error);
+    }
 }
 
 
