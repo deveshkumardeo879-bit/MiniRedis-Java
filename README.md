@@ -1,194 +1,111 @@
 # Mini Redis - Java
 
-A lightweight Redis-like in-memory key-value store built from scratch in Java.
+A lightweight Redis-like in-memory key-value database built from scratch in Java.
 
-## Features
+## 🚀 Features
 
 - In-memory key-value storage
-- SET command
-- GET command
-- DEL command
-- EXISTS command
-- PING command
-- SETEX with TTL expiration
+- SET / GET / DEL / EXISTS commands
+- TTL-based key expiration
+- SETEX command
 - TCP socket server
-- Multiple client connections
-- Java command-line client
+- Multiple client support
+- Command-line Redis client
 - Spring Boot REST API
+- CORS-enabled production API
 - Web dashboard
-- Request logging
-- Input validation
-- Automated JUnit tests
+- Automated unit tests
+- Logging and error handling
+- Public frontend and backend deployment
 
-## Technology Stack
+## 🛠️ Tech Stack
 
 - Java 21
-- Maven
 - Spring Boot
+- Maven
 - REST API
+- TCP Sockets
 - HTML
 - CSS
 - JavaScript
-- JUnit 5
-- TCP Sockets
+- JUnit
 - Git & GitHub
+- Railway
+- Netlify
 
-## Project Structure
-
-```text
-MiniRedis-Java
-├── src
-│   ├── main
-│   │   └── java
-│   │       └── com
-│   │           └── miniredis
-│   │               ├── KeyValueStore.java
-│   │               ├── CommandHandler.java
-│   │               ├── RedisServer.java
-│   │               ├── RedisClient.java
-│   │               ├── MiniRedisApplication.java
-│   │               └── RedisController.java
-│   │
-│   └── test
-│       └── java
-│           └── com
-│               └── miniredis
-│                   ├── KeyValueStoreTest.java
-│                   └── CommandHandlerTest.java
-│
-├── frontend
-│   ├── index.html
-│   ├── style.css
-│   └── script.js
-│
-├── pom.xml
-├── .gitignore
-└── README.md
-
-## Redis Commands
-
-### SET
-
-Stores a value.
+## 🏗️ Architecture
 
 ```text
-SET name Devesh
+Web Dashboard
+      |
+      v
+Spring Boot REST API
+      |
+      v
+KeyValueStore
+      |
+      v
+In-Memory HashMap
 
-GET
+The project also includes a TCP-based Redis server and command-line client.
 
-Retrieves a value.
-
-GET name
-DEL
-
-Deletes a key.
-
-DEL name
-EXISTS
-
-Checks whether a key exists.
-
-EXISTS name
-PING
-
-Checks whether the server is responding.
-
-PING
-SETEX
-
-Stores a value with an expiration time.
-
-SETEX temporary 10 Hello
-
-The key expires after 10 seconds.
-
-Running the Backend
-
-Run:
-
-MiniRedisApplication
-
-The Spring Boot API starts on:
-
-http://localhost:8080
-REST API
-GET
-GET /api/get?key=name
+📡 REST API
 SET
 POST /api/set?key=name&value=Devesh
+GET
+GET /api/get?key=name
 SETEX
-POST /api/setex?key=name&seconds=30&value=Devesh
+POST /api/setex?key=temp&seconds=10&value=Hello
 DELETE
 DELETE /api/delete?key=name
 EXISTS
 GET /api/exists?key=name
-Running the TCP Server
+⏱️ TTL Support
 
-Run:
+Keys can be stored with an expiration time using SETEX.
 
-RedisServer
+Example:
 
-The TCP server listens on port:
+SETEX temp 10 Hello
 
-6379
+After 10 seconds, the key becomes unavailable.
 
-Then run:
+🧪 Testing
 
-RedisClient
-Testing
+The project includes tests for:
 
-The project includes automated JUnit tests for:
-
-SET and GET
+Key-value storage
+Command handling
+SET / GET operations
 DELETE
 EXISTS
-Missing keys
-TTL expiration
-Command handling
-PING
-SETEX
+TTL behavior
+🌐 Live Demo
 
-Run all tests from IntelliJ IDEA.
+Frontend:
+https://candid-haupia-3c2d34.netlify.app/
 
-Architecture
-Web Dashboard
-       |
-       v
-Spring Boot REST API
-       |
-       v
-KeyValueStore
-       |
-       v
-In-Memory HashMap
+Backend:
+https://miniredis-java-production.up.railway.app/
 
-The project also includes a TCP server:
+📂 Project Structure
+MiniRedis-Java/
+├── src/
+│   ├── main/
+│   │   └── java/
+│   │       └── com/
+│   │           └── miniredis/
+│   └── test/
+├── frontend/
+│   ├── index.html
+│   ├── style.css
+│   └── script.js
+├── pom.xml
+└── README.md
+🎯 Purpose
 
-Redis Client
-     |
-     v
-TCP Socket Server
-     |
-     v
-Command Handler
-     |
-     v
-KeyValueStore
-Purpose
+This project was built to understand how an in-memory database works internally, including data storage, command processing, TTL expiration, TCP networking, REST APIs, frontend-backend communication, testing, and deployment.
 
-This project demonstrates the core concepts behind an in-memory key-value database and provides practical experience with:
-
-Java
-Networking
-TCP sockets
-REST APIs
-Backend development
-Frontend integration
-Concurrency
-TTL-based expiration
-Automated testing
-Logging
-Software architecture
-Author
+👨‍💻 Author
 
 Devesh
