@@ -6,7 +6,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:63342")
+@CrossOrigin(origins = {
+        "http://localhost:63342",
+        "https://candid-haupia-3c2d34.netlify.app"
+})
 public class RedisController {
 
     private static final Logger logger =
@@ -66,8 +69,11 @@ public class RedisController {
             @RequestParam long seconds,
             @RequestParam String value) {
 
-        logger.info("SETEX request received for key: {} with TTL: {} seconds",
-                key, seconds);
+        logger.info(
+                "SETEX request received for key: {} with TTL: {} seconds",
+                key,
+                seconds
+        );
 
         if (key == null || key.trim().isEmpty()) {
             logger.warn("SETEX rejected: empty key");
@@ -86,7 +92,10 @@ public class RedisController {
 
         database.setWithTTL(key, value, seconds);
 
-        logger.info("Value stored with TTL successfully for key: {}", key);
+        logger.info(
+                "Value stored with TTL successfully for key: {}",
+                key
+        );
 
         return "OK";
     }
